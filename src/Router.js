@@ -1,12 +1,13 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router'
 import cookie from 'cookie'
-import Hello from './componenets/Hello'
+import Landing from './components/Landing'
+import Login from './components/Login'
+import UserLanding from './containers/UserLanding'
 
 const Router = () => {
     const checkAuth = () => {
         const cookies = cookie.parse(document.cookie)
-
         return cookies['loggedIn'] ? true : false
     }
 
@@ -15,11 +16,7 @@ const Router = () => {
             <Route
                 {...rest}
                 render={(props) =>
-                    checkAuth() ? (
-                        <Component {...props} />
-                    ) : (
-                        <Redirect to="/login" />
-                    )
+                    checkAuth() ? <Component {...props} /> : <Redirect to="/" />
                 }
             />
         )
@@ -27,7 +24,10 @@ const Router = () => {
 
     return (
         <Switch>
-            <Route exact path="/" component={Hello} />
+            <Route exact path="/" component={UserLanding} />
+            <Route path="/business/login" component={Login} />
+            <Route path="/user/login" component={Login} />
+            <ProtectedRoute path="/user/landing" component={UserLanding} />
         </Switch>
     )
 }
