@@ -3,7 +3,6 @@ import Router from './Router'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './redux/store'
-import Navigation from './components/Navigation'
 import { ThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core/styles'
 
@@ -64,7 +63,6 @@ function App() {
         <Provider store={store}>
             <BrowserRouter>
                 <ThemeProvider theme={theme}>
-                    <Navigation />
                     <Router />
                 </ThemeProvider>
             </BrowserRouter>
